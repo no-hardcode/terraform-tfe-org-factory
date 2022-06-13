@@ -5,10 +5,10 @@ Terraform module which creates Terraform Cloud organizations, workspaces, and te
 
 ```hcl
 module "tfe" {
-    source = "ned1313/org-factory/tfe"
+    source = "github.com/no-hardcode/terraform-tfe-org-factory"
     
     organization_name = "name-of-organization-to-manage"
-    create_new = true
+    create_new = false
     config_file_path = "path_to_config_file.json"
 }
 ```
@@ -30,7 +30,13 @@ The JSON file holding the configuration should follow the format outlined here o
             "terraform_version": "1.1.0",
             "tag_names": [
                 "tag1"
-            ]
+            ],
+            "vcs_repo": {
+                "identifier": "no-hardcode/some-repo",
+                "ingress_submodules": false,
+                "oauth_token_id": "ot-sometokenid",
+                "branch": "main"
+            }
         }
     ],
     "teams": [
