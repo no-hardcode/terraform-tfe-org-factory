@@ -15,7 +15,12 @@ variable "organization_email" {
   default     = ""
 }
 
-variable "config_file_path" {
-  description = "(Required) Path to JSON file holding organization configuration. See example JSON file in documentation for more information."
+variable "teams_file_path" {
+  description = "(Required) Path to JSON file holding teams configuration. See example JSON file in documentation for more information."
+  type        = string
+}
+
+variable "workspaces_file_path" {
+  description = "(Required) Path to JSON file holding workspaces configuration. See example JSON file in documentation for more information."
   type        = string
 }

@@ -11,10 +11,11 @@ locals {
   organization_name = var.create_new_organization ? tfe_organization.org[0].id : var.organization_name
 
   # Import org data from json file
-  org_data = jsondecode(file("${var.config_file_path}"))
+  teams_data = jsondecode(file("${var.teams_file_path}"))
+  workspaces_data = jsondecode(file("${var.workspaces_file_path}"))
 
   # Try to extract the workspace data
-  raw_workspaces = try(local.org_data.workspaces, [])
+  raw_workspaces = try(local.workspaces_data.workspaces, [])
 
   # Normalize the workspace data, at the very least it needs to have a name
   workspaces = [for workspace in local.raw_workspaces : {
@@ -45,7 +46,7 @@ locals {
   ])
 
   # Try to extract the team data
-  raw_teams = try(local.org_data.teams, [])
+  raw_teams = try(local.teams_data.teams, [])
 
   # Normalize the teams data, each team at least needs a name
   teams = [for team in local.raw_teams : {
