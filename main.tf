@@ -80,8 +80,9 @@ resource "tfe_workspace" "workspaces" {
     for_each = each.value["vcs_repo"] != {} ? toset(["1"]) : toset([])
 
     content {
+      branch             = try(each.value.vcs_repo["branch"], "main")
       identifier         = each.value.vcs_repo["identifier"]
-      ingress_submodules = each.value.vcs_repo["ingress_submodules"]
+      ingress_submodules = try(each.value.vcs_repo["ingress_submodules"], false)
       oauth_token_id     = each.value.vcs_repo["oauth_token_id"]
     }
   }
