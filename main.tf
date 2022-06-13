@@ -20,7 +20,7 @@ locals {
   workspaces = [for workspace in local.raw_workspaces : {
     name                = workspace["name"]
     auto_apply          = try(workspace["auto_apply"], false)
-    allow_destroy_plan  = try(workspace["auto_apply"], true)
+    allow_destroy_plan  = try(workspace["allow_destroy_plan"], true)
     description         = try(workspace["description"], "No description provided.")
     execution_mode      = try(workspace["execution_mode"], "remote")
     file_triggers_enabled = try(workspace["file_triggers_enabled"], false)
