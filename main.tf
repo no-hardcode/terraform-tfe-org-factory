@@ -61,16 +61,19 @@ locals {
 resource "tfe_workspace" "workspaces" {
   # Create a map of workspaces from the list stored in JSON using the
   # workspace name as the key
-  for_each            = { for workspace in local.workspaces : workspace["name"] => workspace }
-  name                = each.key
-  description         = each.value["description"]
-  terraform_version   = each.value["terraform_version"]
-  organization        = local.organization_name
-  tag_names           = each.value["tag_names"]
-  auto_apply          = each.value["auto_apply"]
-  allow_destroy_plan  = each.value["allow_destroy_plan"]
-  execution_mode      = each.value["execution_mode"]
-  speculative_enabled = each.value["speculative_enabled"]
+  for_each              = { for workspace in local.workspaces : workspace["name"] => workspace }
+  name                  = each.key
+  auto_apply            = each.value["auto_apply"]
+  allow_destroy_plan    = each.value["allow_destroy_plan"]
+  description           = each.value["description"]
+  execution_mode        = each.value["execution_mode"]
+  file_triggers_enabled = each.value["file_triggers_enabled"]
+  global_remote_state   = each.value["global_remote_state"]
+  queue_all_runs        = each.value["queue_all_runs"]
+  organization          = local.organization_name
+  speculative_enabled   = each.value["speculative_enabled"]
+  terraform_version     = each.value["terraform_version"]
+  tag_names             = each.value["tag_names"]
 
   # Create a single vcs_repo block if value isn't an empty map
   dynamic "vcs_repo" {
