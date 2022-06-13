@@ -18,19 +18,19 @@ locals {
 
   # Normalize the workspace data, at the very least it needs to have a name
   workspaces = [for workspace in local.raw_workspaces : {
-    name                = workspace["name"]
-    auto_apply          = try(workspace["auto_apply"], false)
-    allow_destroy_plan  = try(workspace["allow_destroy_plan"], true)
-    description         = try(workspace["description"], "No description provided.")
-    execution_mode      = try(workspace["execution_mode"], "remote")
+    name                  = workspace["name"]
+    auto_apply            = try(workspace["auto_apply"], false)
+    allow_destroy_plan    = try(workspace["allow_destroy_plan"], true)
+    description           = try(workspace["description"], "No description provided.")
+    execution_mode        = try(workspace["execution_mode"], "remote")
     file_triggers_enabled = try(workspace["file_triggers_enabled"], false)
-    global_remote_state = try(workspace["global_remote_state"], false)
-    queue_all_runs = try(workspace["queue_all_runs"], false)
-    speculative_enabled = try(workspace["speculative_enabled"], true)
-    teams               = try(workspace["teams"], [])
-    terraform_version   = try(workspace["terraform_version"], "~> 1.0")
-    tag_names           = try(workspace["tag_names"], [])
-    vcs_repo            = try(workspace["vcs_repo"], {})
+    global_remote_state   = try(workspace["global_remote_state"], false)
+    queue_all_runs        = try(workspace["queue_all_runs"], false)
+    speculative_enabled   = try(workspace["speculative_enabled"], true)
+    teams                 = try(workspace["teams"], [])
+    terraform_version     = try(workspace["terraform_version"], "~> 1.0")
+    tag_names             = try(workspace["tag_names"], [])
+    vcs_repo              = try(workspace["vcs_repo"], {})
   }]
 
   #Create a list of workspace access entries
