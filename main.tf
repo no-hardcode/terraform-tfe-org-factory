@@ -99,6 +99,8 @@ resource "tfe_team" "teams" {
       manage_policy_overrides = try(each.value.organization_access["manage_policy_overrides"], false)
       manage_workspaces       = try(each.value.organization_access["manage_workspaces"], false)
       manage_vcs_settings     = try(each.value.organization_access["manage_vcs_settings"], false)
+      manage_modules          = try(each.value.organization_access["manage_modules"], false)
+      manage_providers        = try(each.value.organization_access["manage_providers"], false)
     }
   }
 }
