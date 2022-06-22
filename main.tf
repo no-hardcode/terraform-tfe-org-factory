@@ -110,8 +110,7 @@ resource "tfe_team" "teams" {
       manage_vcs_settings     = try(each.value.organization_access["manage_vcs_settings"], false)
       manage_modules          = try(each.value.organization_access["manage_modules"], false)
       manage_providers        = try(each.value.organization_access["manage_providers"], false)
-#wait for 0.32 release
-#      manage_run_tasks        = try(each.value.organization_access["manage_run_tasks"], false)
+      manage_run_tasks        = try(each.value.organization_access["manage_run_tasks"], false)
     }
   }
 }
